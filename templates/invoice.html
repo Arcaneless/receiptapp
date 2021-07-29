@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+
+        }
+
+        .page {
+            width: 21cm;
+            min-height:29.7cm;
+            padding-left: 2cm;
+	        padding-right: 2cm;
+	        padding-bottom: 2cm;
+	        padding-top: 2cm;
+	        break-inside: avoid;
+	        orphans: 5;
+        }
+        @page {
+            size: A4 portrait;
+            padding-left: 2cm;
+	        padding-right: 2cm;
+	        padding-bottom: 2cm;
+	        padding-top: 2cm;
+
+        }
+        div.page-break {
+	        page-break-after: always;
+        }
+        table {
+            page-break-inside: avoid;
+        }
+        table tr {
+            page-break-inside: avoid;
+        }
+        table.theader {
+
+            height: 130px;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+        table.jobdetails {
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+        table.jobdetails thead {
+            border-bottom: 1px solid #000000;
+        }
+        table.jobdetails tfoot {
+            border-top: 1px solid #000000;
+        }
+        table.jobdetails tbody tr td {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        table.jobdis {
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+        table.jobdis tfoot {
+            margin-top: 5px;
+        }
+        table.jobdis tbody tr {
+            margin-bottom: 10px;
+        }
+        table.jobdis tbody tr td {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        table.total {
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+        table.total tr {
+            border-top: 1px solid #000000;
+        }
+    </style>
+</head>
+<body>
+
+
+
+<div class="page">
+    <table class="theader" width="100%">
+        <tbody>
+        <tr>
+            <td style="width: 60%; font-weight: bold; font-size: 26px;">
+                <strong>炫達裝飾工程公司</strong>
+                <h6 style="font-weight: bold; font-size: 12px; margin:1px">YUEN TAT DECORATION CO.</h6>
+            </td>
+            <td style="width: 40%;">&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="width: 60%;">SHOP NO.2, GROUND FLOOR, LEI MOON HOUSE(LOWER BLOCK), AP LEI CHAU ESTATE, AP LEI CHAU, HONG KONG</td>
+            <td style="width: 40%; text-align: right;">香港鴨利洲邨利滿樓低座地下2號舖</td>
+        </tr>
+        <tr>
+            <td style="width: 60%;">張業利 &bull; 61869138 &bull; chyipl@yahoo.com.hk</td>
+            <td style="width: 40%; text-align: right;" class="invoice-date">2019-11-11</td>
+        </tr>
+        </tbody>
+    </table>
+    <pre>
+    <strong style="font-size: 18px;"><br />致: </strong><b id="customer_name">劉先生</b> &bull;&nbsp;<b id="customer_tel">38937382</b><br />     <b id="customer_address">鴨脷洲鴨脷洲邨利滿樓底座2號舖</b><br />
+    </pre>
+    <table class="jobdetails" width="100%">
+        <thead>
+        <tr>
+            <th style="width: 7%;" class="list_index">1.</th>
+            <th style="text-align: left; width: 46%; font-size: 18px;" class="list_name">清拆工程</th>
+            <th style="text-align: right; width: 18%; font-size: 18px;">單價</th>
+            <th style="text-align: right; width: 8%; font-size: 18px;"></th>
+            <th style="text-align: right; width: 9%; font-size: 18px;">數目</th>
+            <th style="text-align: right; width: 12%; font-size: 18px;">價格</th>
+        </tr>
+        </thead>
+        <tfoot>
+        <tr>
+            <td style="width: 7%;"></td>
+            <td style="width: 46%; text-align: right;" class="list_total_name">清拆工程小計</td>
+            <td style="width: 18%;"></td>
+            <td style="width: 8%;"></td>
+            <td style="width: 9%;"></td>
+            <td style="width: 12%; text-align: right;" class="list_total"></td>
+        </tr>
+        </tfoot>
+        <tbody>
+        <tr class="job_row">
+            <td style="width: 7%;">1.1</td>
+            <td style="width: 46%;"></td>
+            <td style="width: 18%; text-align: right;"></td>
+            <td style="width: 8%; text-align: right;"></td>
+            <td style="width: 9%; text-align: right;"></td>
+            <td style="width: 12%; text-align: right;"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="page-break"></div>
+<div class="page">
+    <table class="theader" width="100%">
+        <tbody>
+        <tr>
+            <td style="width: 60%; font-weight: bold; font-size: 26px;">
+                <strong>炫達裝飾工程公司</strong>
+                <h6 style="font-weight: bold; font-size: 12px; margin:1px">YUEN TAT DECORATION CO.</h6>
+            </td>
+            <td style="width: 40%;">&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="width: 60%;">SHOP NO.2, GROUND FLOOR, LEI MOON HOUSE(LOWER BLOCK), AP LEI CHAU ESTATE, AP LEI CHAU, HONG KONG</td>
+            <td style="width: 40%;">&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="width: 60%;">張業利 &bull; 61869138 &bull; chyipl@yahoo.com.hk</td>
+            <td style="width: 40%; text-align: right;" class="invoice-date">2019-11-11</td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+</div>
+<table class="total" width="100%">
+    <tbody>
+    <tr>
+        <td style="width: 88%; text-align: right; font-weight: bold;">總價合共</td>
+        <td style="width: 12%; text-align: right; font-weight: bold;" id="total_total_price">0</td>
+    </tr>
+    </tbody>
+</table>
+
+
+</body>
+</html>
