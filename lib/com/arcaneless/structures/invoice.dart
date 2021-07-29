@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:receiptapp/com/arcaneless/firestore_handler.dart';
 import 'package:receiptapp/com/arcaneless/structures/customer.dart';
 import 'package:receiptapp/com/arcaneless/structures/job.dart';
+import 'package:receiptapp/com/arcaneless/structures/payment_arrangment.dart';
 
 class Invoice {
   String name;
@@ -11,6 +12,7 @@ class Invoice {
   DateTime endDate;      // construction work end date
   Customer customer;
   List<Job> jobs;
+  List<PaymentArrangement> paymentArrangements;
 
   Map<String, String> jobsNameChinese;
 
@@ -22,6 +24,7 @@ class Invoice {
     startDate = DateTime.now();
     endDate = DateTime.now();
     customer = Customer();
+    paymentArrangements = List.filled(4, PaymentArrangement());
 
     jobsNameChinese = Map();
     jobs = [];
@@ -76,7 +79,8 @@ class Invoice {
       'startDate': stringifyTimestamp ? startDate.toIso8601String() : Timestamp.fromDate(startDate),
       'endDate': stringifyTimestamp ? endDate.toIso8601String() : Timestamp.fromDate(endDate),
       'customer': customer.toJson(),
-      'jobs': jobs.map((job) => job.toJson()).toList()
+      'jobs': jobs.map((job) => job.toJson()).toList(),
+      'percentageSplits': paymentArrangements.map((pa) => pa.toJson()).toList()
     };
   }
 
@@ -88,6 +92,12 @@ class Invoice {
     i.endDate = json['endDate'].toDate() ?? DateTime.now();
     i.customer = Customer.fromJson(json['customer']);
     i.jobs = (json['jobs'] as List).map((e) => Job.fromJson(e)).toList();
+    i.paymentArrangements = (json['paymentArrangements'] != null
+        ? (json['paymentArrangements'] as List)
+                .asMap()
+                .map((i, e) => MapEntry(i, PaymentArrangement.fromJson(e, i)))
+                .values.toList()
+        : [0, 1, 2, 3].map((e) => PaymentArrangement.fromDefaultIndex(e)).toList());
     return i;
   }
 

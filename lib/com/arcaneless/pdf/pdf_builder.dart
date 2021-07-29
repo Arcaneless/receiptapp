@@ -189,10 +189,13 @@ class PdfBuilder {
     main.getElementsByClassName("page")[pageIndex].append(tail.body.children[0]);
     // element control of tail
     main.getElementsByClassName('total-price')[0].text = totalTotalPrice.toStringAsFixed(1);
-    main.getElementsByClassName('money-split1')[0].text = (totalTotalPrice * 0.4).toStringAsFixed(1);
-    main.getElementsByClassName('money-split2')[0].text = (totalTotalPrice * 0.3).toStringAsFixed(1);
-    main.getElementsByClassName('money-split3')[0].text = (totalTotalPrice * 0.2).toStringAsFixed(1);
-    main.getElementsByClassName('money-split4')[0].text = (totalTotalPrice * 0.1).toStringAsFixed(1);
+
+    // modifying the content of payment arrangements
+    invoice.paymentArrangements.asMap().forEach((key, value) {
+      main.getElementsByClassName('money-split-percentage${key+1}')[0].text = '${value.percentageSplit}%';
+      main.getElementsByClassName('money-split-when-to-pay${key+1}')[0].text = value.whenToPay;
+      main.getElementsByClassName('money-split${key+1}')[0].text = (totalTotalPrice * value.percentageSplit / 100).toStringAsFixed(1);
+    });
 
 
     // Adding date
