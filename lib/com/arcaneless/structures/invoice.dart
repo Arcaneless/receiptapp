@@ -11,6 +11,7 @@ class Invoice {
   DateTime startDate;    // construction work start date
   DateTime endDate;      // construction work end date
   Customer customer;
+  int discount;
   List<Job> jobs;
   List<PaymentArrangement> paymentArrangements;
 
@@ -24,6 +25,7 @@ class Invoice {
     startDate = DateTime.now();
     endDate = DateTime.now();
     customer = Customer();
+    discount = 0;
     paymentArrangements = List.filled(4, PaymentArrangement());
 
     jobsNameChinese = Map();
@@ -47,6 +49,10 @@ class Invoice {
     return jobs
         .where((job) => job.typeId == typeId)
         .fold(0, (previousValue, job) => previousValue + job.totalPrice);
+  }
+
+  double get discountedTotalPrice {
+    return totalTotalPrice * (1.0 - discount / 100.0);
   }
 
   double get totalTotalPrice {
@@ -79,6 +85,7 @@ class Invoice {
       'startDate': stringifyTimestamp ? startDate.toIso8601String() : Timestamp.fromDate(startDate),
       'endDate': stringifyTimestamp ? endDate.toIso8601String() : Timestamp.fromDate(endDate),
       'customer': customer.toJson(),
+      'discount': discount,
       'jobs': jobs.map((job) => job.toJson()).toList(),
       'percentageSplits': paymentArrangements.map((pa) => pa.toJson()).toList()
     };
@@ -91,6 +98,7 @@ class Invoice {
     i.startDate = json['startDate'].toDate() ?? DateTime.now();
     i.endDate = json['endDate'].toDate() ?? DateTime.now();
     i.customer = Customer.fromJson(json['customer']);
+    i.discount = json['discount'] ?? 0;
     i.jobs = (json['jobs'] as List).map((e) => Job.fromJson(e)).toList();
     i.paymentArrangements = (json['paymentArrangements'] != null
         ? (json['paymentArrangements'] as List)

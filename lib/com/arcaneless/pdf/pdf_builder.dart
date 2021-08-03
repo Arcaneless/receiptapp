@@ -174,6 +174,25 @@ class PdfBuilder {
     main.getElementById('total_total_price').text = totalTotalPrice.toStringAsFixed(1);
 
 
+    // discount
+    double discountedTotalPrice = invoice.discountedTotalPrice;
+    double finalTotalPrice = 0;
+    if (invoice.discount == 0) {
+      // remove discounted_total_price_row, discounted_row
+      Logger().i('kk', main.getElementById('discounted_row'));
+      main.getElementById('discount_row').remove();
+      main.getElementById('discounted_total_price_row').remove();
+      finalTotalPrice = totalTotalPrice;
+    } else {
+      main.getElementById('discount').text = '${invoice.discount}%';
+      main.getElementById('discounted_total_price').text = discountedTotalPrice.toStringAsFixed(1);
+      finalTotalPrice = discountedTotalPrice;
+    }
+
+
+
+
+
     // add job done date, etc
     if (pageLength + 720 > maxLength) {
       pageLength = secondPageInitalLength + 350;
@@ -188,13 +207,13 @@ class PdfBuilder {
     // add job done date
     main.getElementsByClassName("page")[pageIndex].append(tail.body.children[0]);
     // element control of tail
-    main.getElementsByClassName('total-price')[0].text = totalTotalPrice.toStringAsFixed(1);
+    main.getElementsByClassName('total-price')[0].text = finalTotalPrice.toStringAsFixed(1);
 
     // modifying the content of payment arrangements
     invoice.paymentArrangements.asMap().forEach((key, value) {
       main.getElementsByClassName('money-split-percentage${key+1}')[0].text = '${value.percentageSplit}%';
       main.getElementsByClassName('money-split-when-to-pay${key+1}')[0].text = value.whenToPay;
-      main.getElementsByClassName('money-split${key+1}')[0].text = (totalTotalPrice * value.percentageSplit / 100).toStringAsFixed(1);
+      main.getElementsByClassName('money-split${key+1}')[0].text = (finalTotalPrice * value.percentageSplit / 100).toStringAsFixed(1);
     });
 
 

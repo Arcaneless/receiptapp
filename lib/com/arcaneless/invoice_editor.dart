@@ -213,6 +213,17 @@ class _InvoiceEditorState extends State<InvoiceEditor>
                   onChanged: (value) => widget.invoice.customer.address = value,
                 ),
               ),
+              FormBigTitle('折扣'),
+              ListTile(
+                leading: const Icon(Icons.monetization_on_sharp),
+                title: TextFormField(
+                  decoration: InputDecoration(hintText: '折扣'),
+                  initialValue: widget.invoice.discount.toString(),
+                  onChanged: (value) => widget.invoice.discount = int.tryParse(value) ?? 0,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                )
+              ),
               FormBigTitle('付款安排'),
               ...widget.invoice.paymentArrangements.asMap().map((i, e) {
                 return MapEntry(i, Column(
