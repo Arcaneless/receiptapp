@@ -10,6 +10,24 @@
 	        padding-bottom: 2cm;
 	        padding-top: 2cm;
         }
+        .remarks {
+            font-size: 18px; 
+            line-height: 180%;
+            page-break-after: always;
+        }
+        .terms {
+            display: block;
+            width: 21cm;
+            word-break: break-all;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+        }
+        table.theader {
+            height: 130px;
+            border-collapse: collapse;
+            table-layout: fixed;
+            margin-bottom: 10px;
+        }
         table.jobdis {
             border-collapse: collapse;
             table-layout: fixed;
@@ -24,18 +42,53 @@
             word-wrap: break-word;
             overflow-wrap: break-word;
         }
+        
     </style>
 </head>
 <body>
-
 <div>
-    <pre style="font-size: 18px; line-height: 200%;">
+<pre class="remarks">
 <strong style="font-size: 20px;">備註:</strong>
     開工日期: <strong class="start-date"></strong>
     完工日期: <strong class="end-date"></strong>
 
     不包括週六，日及公眾假期。施工期完結以完工日期為準，施工日數僅供參考
+    <p class="terms">
+1	工程完工定義，以不影響合理入住為標準。
+2	保養期由完工當日起計算 6 個月，保養期範圍不包括人為、意外或惡劣天氣導致的損壞。
+3	工程期間的項目加減或更改，展開前須得到雙方同意，並重新議定送贈項目、完工日期和更新合約。
+4	若雙方達成口頭協議或合約以外的協議時，雙方須使用 "WhatsApp" 或其他書面記錄方式確認該口頭承諾或合約以 外的協議，否則本合同不可作出任何修改或補充，該口頭承諾或合約以外的協議均被視為無效。
+5	炫達裝飾工程公司 (承辦方)會於工程開工日或之前向客方提供所有工程項目有關的保險文件副本。如果 發生任何保險所保障的事故，承辦方須第一時間通知保險公司、客方。另外，若工程要申索第三者責任保險， 保險公司須就申索項目收取自付費(墊底費)。
+6	若因客方要求，如未就工程購買第三者責任保險或勞工保險，風險將由客方一力承擔。
+7	若客方要求承辦方為額外裝修物料提供安裝服務，雙方須另議服務細節和收費。
+8	若遇上惡劣天氣(如八號或以上熱帶氣旋警告或紅色或更高的暴雨警告 )，雙方可重新議定開工或完工日期。
+9	若任何一方因不可抗力事件而無法履行本合約的部分或全部責任，包括但不限於地震、洪水或其他天災、火災、爆炸、 政府或軍事的行動、恐怖襲擊、戰爭、暴亂、疫症或任何其他類似事件，應立即以 "WhatsApp" 或書面通知另一方。任 何一方因此無法履行或延遲履行義務並不會被視為違反本合約，亦不需要因不可抗力事件造成的損失承擔任何責任。
+10	若工程地點屬偏遠地區 ( 如離島或馬灣等 ) 或屋苑沒有提供升降機服務，雙方須另議搬運費用。
+11	若雙方未有簽署，此合約將於發出後三十日失效。
+12	效果圖 ( 如有 ) 只作參考，詳細物料和尺寸可參照承辦方提供的物料樣版、產品編號和施工圖。
+13	"工程須在上述開工日期的一個月內開始，如其中一方未能提供合理原因而延遲展開工程，則視該方終止合約，該方須
+向另一方支付合約總額的百分之十作為賠償。"
+14	客方須依照以下時間點向承辦方支付工程金額。如客方未能如期在以下時間點付款，工程將因此有機會而延遲，若導致客方之任何損失，承辦方均不負責。</p>
 </pre>
+<table class="theader" width="100%">
+    <tbody>
+    <tr>
+        <td style="width: 60%; font-weight: bold; font-size: 26px;">
+            <strong>炫達裝飾工程公司</strong>
+            <h6 style="font-weight: bold; font-size: 12px; margin:1px">YUEN TAT DECORATION CO.</h6>
+        </td>
+        <td style="width: 40%;">&nbsp;</td>
+    </tr>
+    <tr>
+        <td style="width: 60%;">SHOP NO.2, GROUND FLOOR, LEI MOON HOUSE(LOWER BLOCK), AP LEI CHAU ESTATE, AP LEI CHAU, HONG KONG</td>
+        <td style="width: 40%; text-align: right;">香港鴨利洲邨利滿樓低座地下2號舖</td>
+    </tr>
+    <tr>
+        <td style="width: 60%;">張業利 &bull; 61869138 &bull; chyipl@yahoo.com.hk</td>
+        <td style="width: 40%; text-align: right;" class="invoice-date">2019-11-11</td>
+    </tr>
+    </tbody>
+</table>
     <table class="jobdis" width="73%">
         <thead>
         <tr>
@@ -93,7 +146,7 @@
 中銀 012-706-1-031441-6
 
     </pre>
-    <table class="jobdis" width="100%" style="line-height: 200%;">
+    <table class="jobdis" id="job-sign" width="100%" style="line-height: 200%;">
         <thead>
         <tr>
             <th style="width: 48%; text-align: left; ">雙方簽署落實工程</th>

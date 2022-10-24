@@ -56,7 +56,7 @@ class Invoice {
   }
 
   double get totalTotalPrice {
-    return jobs.fold(0, (previousValue, job) => previousValue + job.totalPrice);
+    return jobs.where((element) => element.typeId != 'additional').fold(0, (previousValue, job) => previousValue + job.totalPrice);
   }
 
   Future<bool> addJob(Job job) async {

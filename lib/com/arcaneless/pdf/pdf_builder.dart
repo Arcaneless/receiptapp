@@ -86,6 +86,11 @@ class PdfBuilder {
     int pageIndex=0;
     double pageLength = firstPageInitalLength;
     invoice.jobsNameChinese.forEach((key, value) {
+      // skip additional
+      if (key == 'additional') {
+        return;
+      }
+
       // Page checking
       List<Job> targetList = invoice.jobs.where((element) => element.typeId == key).toList();
       // If no item, skip it
@@ -194,7 +199,7 @@ class PdfBuilder {
 
 
     // add job done date, etc
-    if (pageLength + 720 > maxLength) {
+    if (true) {
       pageLength = secondPageInitalLength + 350;
       pageIndex++;
       // Log checking
@@ -205,7 +210,7 @@ class PdfBuilder {
       main.body.append(pageOrg.clone(true));
     }
     // add job done date
-    main.getElementsByClassName("page")[pageIndex].append(tail.body.children[0]);
+    main.getElementsByClassName("page")[pageIndex].append(tail.clone(true).body.children[0]);
     // element control of tail
     main.getElementsByClassName('total-price')[0].text = finalTotalPrice.toStringAsFixed(1);
 
@@ -217,6 +222,66 @@ class PdfBuilder {
     });
 
 
+
+
+
+    List<Job> targetList = invoice.getJobList('additional');
+    if (targetList.isNotEmpty) {
+      /**
+       * Add Additional Content at the end
+       */
+      main.body.append(pageBreakOrg.clone(true));
+      main.body.append(pageOrg.clone(true));
+
+      String value = invoice.jobsNameChinese['additional'];
+      Element table = tableEleOrg.clone(true);
+      table.getElementsByClassName('list_index')[0].text = '$i.';
+      table.getElementsByClassName('list_name')[0].text = value;
+      table.getElementsByClassName('list_total_name')[0].text = '$value小計';
+      table.getElementsByClassName('list_total')[0].text = invoice.getCategoryTotalPrice('additional').toStringAsFixed(1);
+
+
+      Element rowEleOrg = table.getElementsByClassName('job_row')[0].clone(true);
+      table.getElementsByClassName('job_row')[0].remove();
+      // Elements details iteration
+      int j = 1; // iteration
+      targetList.forEach((element) {
+        Element row = rowEleOrg.clone(true);
+
+        row.children[0].text = '$i.$j'; // index
+        row.children[1].text = element.objectName; // name
+
+        if (element.jobState == JobState.Single) {
+
+          row.children[2].text = element.pricePerUnit.toStringAsFixed(1); // per_unit_price
+          row.children[3].text = element.amount.toStringAsFixed(1); // amount
+          row.children[4].text = element.unit; // unit
+          row.children[5].text = element.totalPrice.toStringAsFixed(1); // total_price
+
+        } else if (element.jobState == JobState.Multiple) {
+
+          row.children[4].text = '第${element.range[0]}-${element.range[1]}項'; // range
+          row.children[5].text = element.pricePerUnit.toStringAsFixed(1); // total_price
+
+        } else {
+
+          row.children[5].text = element.jobState.to_string(); // total_price
+
+        }
+
+
+        j++;
+        table.children[2].append(row);
+
+      });
+
+      Element sign = tail.getElementById('job-sign').clone(true);
+      main.getElementsByClassName("page")[pageIndex+1].append(table);
+      main.getElementsByClassName("page")[pageIndex+1].append(sign);
+    }
+
+
+
     // Adding date
     // Invoice date
     DateFormat formatter1 = DateFormat('yyyy-MM-dd');
@@ -226,6 +291,7 @@ class PdfBuilder {
     DateFormat formatter2 = DateFormat('yyyy 年 MM 月 dd 日');
     main.getElementsByClassName('start-date')[0].text = formatter2.format(invoice.startDate);
     main.getElementsByClassName('end-date')[0].text = formatter2.format(invoice.endDate);
+
 
 
     //Logger().i(main.outerHtml); // LOG
